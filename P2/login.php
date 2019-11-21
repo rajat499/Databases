@@ -20,9 +20,9 @@ COMP353- Group 11
 		</style>
 	</head>
 	<body>	
-        <div align="right"><a href="./admn.php" align="right">Administrator</a></div> 
+        <!-- <div align="right"><a href="./admn.php" align="right">Administrator</a></div>  -->
         <b>User Login</b>
-		<form action="./users.php" method="POST">
+		<form action="./authenticate.php" method="POST">
 			UserID:   &emsp; <input type="text" name="user_id" id="userid" required="required"><br>
             Password: &emsp; <input type="password" name="pwd" id="pwd" required="required"><br>
 			<input type="submit" value="Login" name="submit">
@@ -31,11 +31,11 @@ COMP353- Group 11
 		<div>
 		<br>
         <b> User Sign Up</b>
-		<form action="none" method="POST">
-			Name:   &emsp; <input type="text" name="user_name" id="userid" required="required"><br>
-			Choose a unique UserID:   &emsp; <input type="text" name="user_id" id="userid" required="required"><br>
-            Password: &emsp; <input type="password" name="pwd" id="pwd" required="required"><br>
-            Email-id: &emsp; <input type="text" name="email" id="email" required="required"><br>
+		<form action="register.php" method="POST">
+			Name*:   &emsp; <input type="text" name="user_name" id="userid" required="required"><br>
+			Choose a unique UserID*:   &emsp; <input type="text" name="user_id" id="userid" required="required"><br>
+            Password*: &emsp; <input type="password" name="pwd" id="pwd" required="required"><br>
+            Email-id*: &emsp; <input type="text" name="email" id="email" required="required"><br>
             Organization: &emsp; <input type="text" name="orgn" id="orgn"><br>
 			<input type="submit" value="Register" name="submit">
 		</form>
