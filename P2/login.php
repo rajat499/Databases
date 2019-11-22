@@ -1,3 +1,14 @@
+<?php
+	session_start();
+	if(isset($_SESSION["username"])){
+		header("location:authenticate.php");
+		exit();
+	}
+	// if(isset($_SESSION["logout"])){
+	// 	echo $_SESSION["logout"];
+	// }
+?>
+
 <!-- -------------------------------------------------------------
 COMP353, Section F, Prof BC DESAI, Project-1
 COMP353- Group 11
@@ -9,6 +20,8 @@ COMP353- Group 11
 ------------------------------------------------------------- -->
 
 <!-- Login Page on the webpage -->
+
+
 
 <html>
 	<head>
@@ -32,11 +45,11 @@ COMP353- Group 11
 		<br>
         <b> User Sign Up</b>
 		<form action="register.php" method="POST">
-			Name*:   &emsp; <input type="text" name="user_name" id="userid" required="required"><br>
-			Choose a unique UserID*:   &emsp; <input type="text" name="user_id" id="userid" required="required"><br>
-            Password*: &emsp; <input type="password" name="pwd" id="pwd" required="required"><br>
-            Email-id*: &emsp; <input type="text" name="email" id="email" required="required"><br>
-            Organization: &emsp; <input type="text" name="orgn" id="orgn"><br>
+			Name*:   &emsp; <input type="text" name="user_name"  required="required"><br>
+			Choose a unique UserID*:   &emsp; <input type="text" name="user_id"  required="required"><br>
+            Password*: &emsp; <input type="password" name="pwd"  required="required"><br>
+            Email-id*: &emsp; <input type="text" name="email"  required="required"><br>
+            Organization: &emsp; <input type="text" name="orgn" ><br>
 			<input type="submit" value="Register" name="submit">
 		</form>
 		</div>
