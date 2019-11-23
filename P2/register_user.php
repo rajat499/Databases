@@ -11,7 +11,10 @@
 
     if($conn->query($sql) !== TRUE){
         if($conn->error == "Duplicate entry '$_userid' for key 'PRIMARY'"){
-            echo "Error: UserID '".$_userid."' already exists. Try a new one.<br>";
+            echo "Error: UserID '".$_userid."' is already taken. Try a new one.<br>";
+        }
+        else if($conn->error == "Duplicate entry '$_email' for key 'email'"){
+            echo "Error: Email '$_email' is already registered with us. Try a new one.<br>";
         }
         else{
             echo "One of the entry is too long. Keep in mind:<br>UserID should be less than 15 characters<br>";

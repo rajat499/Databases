@@ -1,14 +1,16 @@
 <?php
+session_start();
+include("connection.php");
 
-$conn = new mysqli("krc353.encs.concordia.ca", "krc353_2", "qNbKfe");
-
-if ($conn->connect_error) {
-    die("Connection to the MySQL server failed: " . $conn->connect_error);
-}
-
-$conn->select_db('krc353_2');
 $user_id = $_POST["user_id"];
 $pwd = $_POST["pwd"];
+if(isset($_SESSION["username"])){
+    $user_id = $_SESSION["username"];
+}
+if(isset($_SESSION["password"])){
+    $pwd = $_SESSION["password"];
+}
+
 // echo "User ID:".$user_id."<br>";
 // echo "Password:".$pwd."<br>";
 $login_query = "SELECT * FROM users_info WHERE userid='$user_id' AND pass='$pwd'";
@@ -21,7 +23,6 @@ if (!$result) {
 }
 
 $count = $result->num_rows;
-session_start();
 
 if($count==1){
     $row = $result->fetch_assoc();
@@ -46,6 +47,8 @@ if($count==1){
         }
     }
     else{
+        unset($_SESSION["username"]);
+        unset($_SESSION["password"]);
         echo 
         "<script type='text/javascript'>
             alert('Wrong Username or Password');
@@ -54,6 +57,8 @@ if($count==1){
     }
 }
 else{
+    unset($_SESSION["username"]);
+    unset($_SESSION["password"]);
     echo 
     "<script type='text/javascript'>
         alert('Wrong Username or Password');

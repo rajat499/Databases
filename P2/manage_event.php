@@ -28,6 +28,54 @@
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
     }
+
+    echo "<b>Members in the Event<br></b>";
+    $col = array("username", "email"); 
+    $sql = $conn->query("SELECT user from participants where event='$event'");
+    if(!$sql){
+        echo "Error getting details of Participants. ".$conn->error."<br>";
+        exit();
+    }
+
+    if($sql->num_rows>0){
+        echo "<table>";
+        echo "<tr> <th>Username</th> <th>Email</th> <th>Remove</th> </tr>";
+
+        while($row = $sql->fetch_assoc()){
+            echo "<tr>";
+                $row=$row["user"];
+                $user = $conn->query("SELECT * from users_info WHERE userid='$row'");
+                $user = $user->fetch_assoc();
+                foreach($col as $att)
+                    echo "<td>".$user[$att]."</td>";
+                echo "<td><form action='' method='POST'>
+                        <button type='submit' value='$row' name='remove'>Remove</button>
+                        </form></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    }
+    else{
+        echo "No Participants in the event.<br>";
+    }
+
+    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['remove'])){
+        delete_participants($_POST['remove'],$event);
+    }
+
+    function delete_participants($user, $event){
+        include ("connection.php");
+        $sql = $conn->query("DELETE FROM participants WHERE user='$user' AND event='$event'");
+        if(!$sql){
+            echo "Error in query delete participants: ".$conn->error." <br>";
+            exit();
+        }
+        echo 
+        "<script type='text/javascript'>
+            window.history.go(-1);
+        </script>";
+    }
+
     
     echo "<b>Approve/Delete Request<br></b>";
     $col = array("username", "email"); 
