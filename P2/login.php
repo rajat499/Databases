@@ -41,10 +41,10 @@ COMP353- Group 11
   </form>
   
   <form class="form signupForm framed"action ="./register_user.php" method="POST">
-		<input type="text" placeholder="Name" class="input topInput" required ="required" name="user_name"/>
-		<input type="text" placeholder="Unique User Id" class="input input" required ="required" name="user_id" />
-		<input type="password" placeholder="Password" class="input" required ="required" name="pwd"/>
-		<input type="email" placeholder="Email" class="input input" required ="required" name="email" />
+		<input type="text" placeholder="Name*" class="input topInput" required ="required" name="user_name"/>
+		<input type="text" placeholder="Unique User Id*" class="input input" required ="required" name="user_id" />
+		<input type="password" placeholder="Password*" class="input" required ="required" name="pwd"/>
+		<input type="email" placeholder="Email*" class="input input" required ="required" name="email" />
 		<input type="text" placeholder="Organization" class="input" name="orgn"/>
 		<input type="submit" value="Register" name="submit" class="input submitInput" />  
     <label for="loginToggle" class="text smallText centeredText">Already a User? <b>Log in</b></label>

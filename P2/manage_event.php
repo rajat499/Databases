@@ -8,7 +8,9 @@
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
     }
-    echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a><br>";
+
+    echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
+    echo "<a href='users.php'>Go Back to Homepage</a> &emsp;&emsp;&emsp; <a href='logout.php'>Logout</a><br><br>";
     $event = $_GET["event"];
     if($event==""){
         echo "Event Not Specified<br>";
@@ -27,6 +29,26 @@
         echo "You are not a manager of this event.<br>";
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
+    }
+
+    echo "<div><form action='' method='POST'>
+                        <button type='submit' value='$row' name='event_delete'>Delete This Event</button>
+                        </form></div>";
+    
+    
+    echo "<a href='./edit_event.php?event=$event'>Edit Details of the Event</a><br><br>";
+
+    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['event_delete'])){
+        $sql = $conn->query("DELETE FROM events_info WHERE eventid=$event");
+        if(!$sql){
+            echo "Error in query deleting the event $event: ".$conn->error." <br>";
+            exit();
+        }
+        echo 
+        "<script type='text/javascript'>
+            alert('Deleted the event with id: $event');
+            window.location='authenticate.php';
+        </script>";
     }
 
     echo "<b>Members in the Event<br></b>";

@@ -107,11 +107,11 @@
     if(!$result){
         echo "Error getting details of Managerial Roles. ".$conn->error."<br>";
     }
-    $col = array("eventid", "startdate", "enddate", "orgnType", "debitdetail"); 
+    $col = array("eventid", "startdate", "enddate", "orgnType", "debitaccno", "debitbankname"); 
     echo "<b><br> You are manager of the following events. Click on Event ID to manage the event</b><br>";
     if($result->num_rows>0){
         echo "<table>";
-        echo "<tr> <th>Event Name</th> <th>Event ID</th> <th>Start Date</th> <th>End Date</th> <th>Organization</th> <th>Debit Details</th></tr>";
+        echo "<tr> <th>Event Name</th> <th>Event ID</th> <th>Start Date</th> <th>End Date</th> <th>Organization</th> <th>Debit Acc No</th> <th>Debit Bank</th></tr>";
         while($row = $result->fetch_assoc()){
             echo "<tr>";
             $event = $row["eventid"];
