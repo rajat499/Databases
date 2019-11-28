@@ -27,16 +27,17 @@
     if(!$result){
         echo "Error getting details of events registered in. ".$conn->error."<br>";
     }
-    $col = array("eventid", "eventname", "startdate", "enddate"); 
+    $col = array("eventid", "startdate", "enddate"); 
     echo "<b> Events you are registered for.</b><br>";
     if($result->num_rows>0){
         echo "<table>";
-        echo "<tr> <th>Event ID</th> <th>Event Name</th> <th>Start Date</th> <th>End Date</th> <th>Event Manager</th> <th>Withdraw</th></tr>";
+        echo "<tr> <th>Event Name</th> <th>Event ID</th> <th>Start Date</th> <th>End Date</th> <th>Event Manager</th> <th>Withdraw</th></tr>";
         while($row = $result->fetch_assoc()){
             echo "<tr>";
             $eventDet = $row["event"];
             $eventDet = $conn->query("SELECT * from events_info where eventid='$eventDet'");
             $eventDet = $eventDet->fetch_assoc();
+            echo "<td><a href='events.php?event=".$eventDet["eventid"]."'>".$eventDet["eventname"]."</a></td>";
             foreach($col as $att)
                 echo "<td>".$eventDet[$att]."</td>";
             $eventManager = $eventDet["eventmanager"];

@@ -60,35 +60,43 @@
 
 <html>
     <head>
-    <title> Register an event</title>
+	<link rel="stylesheet" type="text/css" href="css/register_event.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title> Register an Event</title>
     </head>
-    <body>
-        <a href='users.php'>Go Back to Homepage</a> &emsp;&emsp;&emsp; <a href='logout.php'>Logout</a><br><br>
-        <b> Register a New Event</b>
-        <form action="register_event.php" method="POST">
-            Event Name*:   &emsp; <input type="text" name="eventname"  required="required"><br>
-			Start Date*:   &emsp; <input type="date" name="startdate"  required="required"><br>
-            End Date*: &emsp; <input type="date" name="enddate"  required="required"><br>
-            Organization Type*: &emsp; <select name="orgn" required>
-                                        <option value="">None</option>
+<body>
+	<button onclick="window.location.href='users.php'" class="btn"><i class="fa fa-home"></i></button> </b>
+	&emsp;&emsp;&emsp; <button onclick="window.location.href='logout.php'" class="logout">Log out</button><br><br>
+  <h1>Register an Event</h1>
+  <div class="form-container">
+    <form action="register_event.php" method="POST">
+		<input type="text" name="eventname" placeholder="Event Name" required="required"><br>
+        <b>Start Date</b>
+		<input type="date" name="startdate" placeholder="Start Date"  required="required"><br>
+        <input type="date" name="enddate"  placeholder="End Date" required="required"><br>
+        <select class="orgn" name="orgn" placeholder="Select Organization Type" required>
+                                        <option value="">Select Organization Type</option>
                                         <option value="Non-Profit Organization">Non-Profit Organization</option>
                                         <option value="Family">Family</option>
                                         <option value="Community">Community</option>
                                         <option value="Other">Other</option>
-                                        </select><br><br>
+		</select></b><br>
 
-            <b> Debit Details of the event:</b><br>
-            Account Number*: &emsp; <input type="number" placeholder="8-Digit" name="accno" required="required" min="10000000" max="99999999"><br>
-            Account Name*: &emsp; <input type="text" name="accname"  required="required"><br>
-            Bank Name*: &emsp; <select name="bankname" required>
-                                        <option value="">None</option>
+        <b> Debit Details of the event:</b><br>
+            <input type="number" placeholder="Account Number*: 8-Digit" name="accno" required="required" min="10000000" max="99999999"><br>
+            <input type="text" placeholder="Account Name*" name="accname"  required="required"><br>
+            <select class="bankname" placeholder="Bank Name*" name="bankname" required>
+                                        <option value="">Select Bank Name</option>
                                         <option value="ABC">ABC</option>
                                         <option value="RBC">RBC</option>
                                         <option value="XYZ">XYZ</option>
                                         <option value="TDBC">TDBC</option>
                                         </select><br>
-            Address:   &emsp; <input type="text" name="address"><br>
-            <input type="submit" value="Register" name="register">
-        </form>
-    </body>
+           <input type="text" placeholder=" Address" name="address"><br>
+
+        <input style="text-align:center" class="button" type="submit" value="Register" name="submit"/>
+     </form>
+  </div>
+</body>
 </html>

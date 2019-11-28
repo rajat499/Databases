@@ -1,6 +1,6 @@
 <?php
-    session_start();
-
+	session_start();
+    
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
@@ -16,11 +16,6 @@
         echo "You don't have permissions to visit this page.<br>";
         exit();
     }
-    
-    echo "Welcome to SCC System. You are a System Administrator."."<br>";
-    echo "Your username is: ".$_SESSION["username"]."<br>";
-    echo "Your password is: ".$_SESSION["password"]."<br>";
-
 
 
 ?>

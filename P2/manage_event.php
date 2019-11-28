@@ -10,7 +10,7 @@
     }
 
     echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
-    echo "<a href='users.php'>Go Back to Homepage</a> &emsp;&emsp;&emsp; <a href='logout.php'>Logout</a><br><br>";
+    echo "<a href='authenticate.php'>Go Back to Homepage</a> &emsp;&emsp;&emsp; <a href='logout.php'>Logout</a><br><br>";
     $event = $_GET["event"];
     if($event==""){
         echo "Event Not Specified<br>";
@@ -50,6 +50,8 @@
             window.location='authenticate.php';
         </script>";
     }
+
+    echo "<a href='events.php?event=$event'>Go to Events Page</a><br>";
 
     echo "<b>Members in the Event<br></b>";
     $col = array("username", "email"); 
