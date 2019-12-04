@@ -39,7 +39,7 @@ echo"<div class='form-container'>";
 
   echo"<div>";
     echo "<a href='./edit_event.php?event=$event'>Edit Event Details</a><br><br>";
-  echo"</div>";
+  echo"</div><br>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['event_delete'])){
         $sql = $conn->query("DELETE FROM events_info WHERE eventid=$event");
@@ -56,7 +56,7 @@ echo"<div class='form-container'>";
 
   echo"<div>";
     echo "<a href='events.php?event=$event'>Go to Events Page</a><br>";
-  echo"</div>";
+  echo"</div><br>";
 
   echo"<div>";
     echo "<h1>Members in the Event</h1>";
@@ -88,7 +88,7 @@ echo"<div class='form-container'>";
     else{
         echo "No Participants in the event.<br>";
     }
-  echo"</div>";
+  echo"</div><br>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['remove'])){
         delete_participants($_POST['remove'],$event);
@@ -139,13 +139,13 @@ echo"<div class='form-container'>";
     else{
         echo "No requests Pending.<br>";
     }
-  echo"</div>";
+  echo"</div><br>";
 
   echo"<div class='end'>";
   echo "<form action='' method='POST'>
                         <button class='button' type='submit' value='$row' name='event_delete'>Delete Event</button>
                         </form>";
-  echo"</div>";
+  echo"</div><br>";
 echo"</div>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['delete'])){

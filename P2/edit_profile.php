@@ -35,16 +35,16 @@ echo"<table>";
     echo "<label>Password</label><input type='text' name='pwd' value='$pwd'><br>";
     $email = $result["email"]; 
     echo "Email-ID: $email<br><br><br>";
-    $organizations = array("Non-Profit", "Family", "Community", "Other");
-    $orgn = $result["orgn"];
-    echo "<label>Organization: </label>";
-    echo "<select class='orgn' name='orgn'>";
-    echo "<option value='$orgn'>$orgn</option>";
-    foreach($organizations as $organization){
-        if($organization !== $orgn){
-            echo "<option value='$organization'>$organization</option>";
-        }
-    }
+    // $organizations = array("Non-Profit", "Family", "Community", "Other");
+    // $orgn = $result["orgn"];
+    // echo "<label>Organization: </label>";
+    // echo "<select class='orgn' name='orgn'>";
+    // echo "<option value='$orgn'>$orgn</option>";
+    // foreach($organizations as $organization){
+    //     if($organization !== $orgn){
+    //         echo "<option value='$organization'>$organization</option>";
+    //     }
+    // }
     echo "</select></b><br><br><br>";
         
     echo '<input style="text-align:center; position: absolute; right: 6;" class="button" type="submit" value="Edit" name="edit"/>';
@@ -54,12 +54,12 @@ echo"</div>";
     echo "</div>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit'])){ 
-        edit_profile($_SESSION["username"],$_POST["newuserid"], $_POST['name'], $_POST["pwd"], $_POST["orgn"]);
+        edit_profile($_SESSION["username"],$_POST["newuserid"], $_POST['name'], $_POST["pwd"]);
     }
 
-    function edit_profile($olduserid, $newuserid, $username, $pwd, $orgn){
+    function edit_profile($olduserid, $newuserid, $username, $pwd){
         include ("connection.php");
-        $sql = $conn->query("UPDATE users_info SET userid='$newuserid', username='$username', pass='$pwd', orgn='$orgn' WHERE userid='$olduserid'");
+        $sql = $conn->query("UPDATE users_info SET userid='$newuserid', username='$username', pass='$pwd' WHERE userid='$olduserid'");
         if(!$sql){
             if($conn->error == "Duplicate entry '$newuserid' for key 'PRIMARY'"){
                 echo "Error: UserID '".$newuserid."' is already taken. Try a new one.<br>";

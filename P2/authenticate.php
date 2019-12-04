@@ -11,8 +11,6 @@ if(isset($_SESSION["password"])){
     $pwd = $_SESSION["password"];
 }
 
-// echo "User ID:".$user_id."<br>";
-// echo "Password:".$pwd."<br>";
 $login_query = "SELECT * FROM users_info WHERE userid='$user_id' AND pass='$pwd'";
 
 $result = $conn->query($login_query);

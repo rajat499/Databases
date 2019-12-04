@@ -14,7 +14,7 @@
 	$user = $_SESSION["username"];
 	$qrry="SELECT DISTINCT sender, receiver, time_stamp
 		FROM messages WHERE
-		sender ='$user' UNION
+		sender ='$user' UNION DISTINCT
 		SELECT DISTINCT sender, receiver, time_stamp 
 		FROM messages WHERE
 		receiver='$user'
@@ -57,37 +57,37 @@
 								$counter++;
 						
 							}
-						} elseif ($_SESSION['username'] == $sender) {
+					} elseif ($_SESSION['username'] == $sender) {
 							
 							// We want to add the sender, but only once too
 
-							if(in_array($sender, $added_user)) {
+						if(in_array($sender, $added_user)) {
 
-								// Same as above, if sender is already added, don't add him again
+							// Same as above, if sender is already added, don't add him again
 
-							} else {
+						} else {
 
-								// If the sender was not found, we want to add it in the left column
+							// If the sender was not found, we want to add it in the left column
 
-								?>
-									<div class="leftColMessages">
-										<img src="images/pikachu.jpg" class="image"/>
-										<?php echo '<a style="float:right; color:black;" "href="?user='.$sender.'">'.$sender.'</a>'; ?>
-									</div>	
-								<?php
+							?>
+								<div class="leftColMessages">
+									<img src="images/pikachu.jpg" class="image"/>
+									<?php echo '<a style="float:right; color:black;" "href="?user='.$sender.'">'.$sender.'</a>'; ?>
+								</div>	
+							<?php
 
-								// Since the sender name was added, we want it to be added inside of the array too
+							// Since the sender name was added, we want it to be added inside of the array too
 
-								$added_user = array($counter => $sender);
+							$added_user = array($counter => $sender);
 
-								// We want to increment the counter
-								$counter++;
-								
+							// We want to increment the counter
+							$counter++;
 							
-							}
+						
 						}
-							
 					}
+							
+				}
 
 				
 			} else {

@@ -80,7 +80,7 @@
 						// If the message was sent by you, show it (in a special style)
 						?>
 							<div class="you-message">
-								<a href="#">You</a>
+								<a href="authenticate.php">You</a>
 								<p><?php echo $message; ?></p>
 							</div>
 						<?php 

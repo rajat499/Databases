@@ -17,12 +17,22 @@
    if($user !== "controller"){
         echo "You don't have permissions to visit this page.<br>";
         exit();
-    }
- 	echo "Welcome to SCC System. You are a Controller."."<br>";
-  	echo "Your username is: ".$_SESSION["username"]."<br>";
-    	echo "Your password is: ".$_SESSION["password"]."<br>";
+	}
+	
+	if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit_charge'])){ 
+		charge_event($_POST['edit_charge'], $_POST['charge'], $_POST['num_days'], $_POST['num_posts'], $_POST['charge_post'],$_POST['charge_day']);
+		// echo "(".$_POST['edit_charge']." ".$_POST['charge']." ". $_POST['num_days']." ". $_POST['num_posts']." ". $_POST['charge_post']." ". $_POST['charge_day'].")<br>";
+   }
 
-  	
+	function charge_event($id, $charge, $num_days, $num_posts, $charge_post, $charge_day){
+		include("connection.php");
+		$sql = "UPDATE charge_slab SET charge=$charge, num_days=$num_days, num_posts=$num_posts, charge_post=$charge_post, charge_day=$charge_day WHERE id='$id'";
+		if ($conn->query($sql) !== TRUE) {
+			echo "Error updating record: " . $conn->error;
+			exit();
+		}   	
+	}
+
 
 	echo "<h1>Details of Charge According to Event Type in the System</h1><br>";
 
@@ -34,44 +44,32 @@
 
 	$eventname = $result['eventname'];
 
-	$columns = array("id", "charge", "num_days", "num_posts","charge_post","charge_day"); 
+	$columns = array("charge", "num_days", "num_posts","charge_post","charge_day"); 
 	if($sql->num_rows>0){
        		echo "<table>";
-        	echo "<tr> <th>ID</th> <th>Charge</th>  <th>Number of days</th> <th>NUmber of posts</th><th>Charge per post</th><th>Charge day</th></tr>";
+        	echo "<tr> <th>Charge Type</th> <th>Charge</th>  <th>Number of days</th> <th>Number of posts</th><th>Charge per post</th><th>Charge day</th></tr>";
        	 	while($row = $sql->fetch_assoc()){
-            		echo "<tr>";
-               		foreach($columns as $attr)
-				echo "<td><input type='text' name='eventname' value='".$row[$attr]."'</td>";
-               		 	echo "<td><form action='' method='POST'>
-                       		 <button type='submit' value='edit_charge' name='edit_charge'>Edit Charge</button>
-                        	</form></td>";
-            			echo "</tr>";
+				echo "<tr><form action='' method='POST'>";
+				if($row["id"]==1){
+					echo "<td>Normal Charges</td>";
+				}else if($row["id"]==2){
+					echo "<td>Discounted Charges For Recurring Events</td>";
+				}else{
+					continue;
+				}
+				foreach($columns as $attr)
+					echo "<td><input type='text' name='$attr' value='".$row[$attr]."'</td>";
+				
+				echo "<td>
+						<button type='submit' value='".$row['id']."' name='edit_charge'>Edit Charge</button>
+					</td>";
+				echo "</form></tr>";
         	}
        		 echo "</table>";
    	 }
-    	else{
-       		 echo "No Charges in the event.<br>";
-    	}
- 
-
-	if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit_charge'])){ 
-        	charge_event($id,$_POST['charge'], $_POST["num_days"], $_POST["num_posts"], $_POST["charge_post"],$_POST['charge_day']);
-   	}
-
-   	 function charge_event($id, $charge, $num_days, $num_posts, $charge_post, $charge_day){
-       	 include("connection.php");
-		$sql = "UPDATE charge_slab SET charge='$charge', num_days='$num_days', num_posts='$num_posts', charge_post='$charge_post', charge_day='$charge_day' WHERE id='$id'";
-		if ($conn->query($sql) === TRUE) {
-		    echo "Record updated successfully";
-		} else {
-		    echo "Error updating record: " . $conn->error;
-		}   
-		 echo 
-			"<script type='text/javascript'>
-			    window.location='controller.php';
-			</script>"; 	
-         }
-        // $conn->close();
+	else{
+			echo "No Charges in the event.<br>";
+	}
 
 	$events = $conn->query("SELECT * from events_info");
     	if(!$events){

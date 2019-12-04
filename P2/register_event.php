@@ -60,7 +60,7 @@
 
 <html>
     <head>
-	<link rel="stylesheet" type="text/css" href="css/register_event.css">
+	<link rel="stylesheet" type="text/css" href="css/edit_event.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Register an Event</title>
@@ -89,7 +89,7 @@
         
            <b>Debit Details</b><br>
            <label>Account Number</label><input type="number" placeholder="8-Digit" name="accno" required="required" min="10000000" max="99999999"><br><br>
-            <input type="text" placeholder="Account Name*" name="accname"  required="required"><br><br>
+            <input type="text" placeholder="Account Name*" name="accname"  required="required"><br><br><br>
            <input type="text" placeholder=" Address" name="address"><br><br>
             <select class="bankname" placeholder="Bank Name*" name="bankname" required>
                                         <option value="">Select Bank Name</option>

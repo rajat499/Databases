@@ -17,7 +17,7 @@
 			//header("location:index.php?user=".$receiver);
 			echo 
 			"<script type='text/javascript'>
-				window.location='index.php?user=.$receiver';
+				window.location='MessagingSystem.php';
 			</script>";
 			//exit();
 		} else {

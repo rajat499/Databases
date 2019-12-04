@@ -7,7 +7,7 @@
     $_email = $_POST["email"];
     $_orgn = $_POST["orgn"];
 
-    $sql = "INSERT INTO users_info VALUES('$_userid', '$_username', '$_pass', '$_email', '$_orgn')";
+    $sql = "INSERT INTO users_info VALUES('$_userid', '$_username', '$_pass', '$_email')";
 
     if($conn->query($sql) !== TRUE){
         if($conn->error == "Duplicate entry '$_userid' for key 'PRIMARY'"){

@@ -19,8 +19,8 @@
     
     echo "<a href='edit_profile.php'>Edit Profile</a>&emsp;&emsp;";
     echo "<a href='register_event.php'>Register Event</a>&emsp;&emsp;";
-    echo "<a href='logout.php'>Logout</a>&emsp;&emsp;";
-    echo "<a href='MessagingSystem.php'>Instant Messaging System</a><br><br>";
+    echo "<a href='MessagingSystem.php'>Instant Messaging System</a>&emsp;&emsp;";
+    echo "<a href='logout.php'>Logout</a><br><br>";
     
     $sql = "SELECT event from  participants where user='$user'";
     $result = $conn->query($sql);
@@ -146,3 +146,11 @@
 
     $conn->close();
 ?>
+<html>
+    <head>
+	<link rel="stylesheet" type="text/css" href="css/controller.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Events</title>
+    </head>
+</html>
