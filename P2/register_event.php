@@ -63,39 +63,45 @@
 	<link rel="stylesheet" type="text/css" href="css/register_event.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title> Register an Event</title>
+    <title>Register an Event</title>
     </head>
 <body>
 	<button onclick="window.location.href='users.php'" class="btn"><i class="fa fa-home"></i></button> </b>
-	&emsp;&emsp;&emsp; <button onclick="window.location.href='logout.php'" class="logout">Log out</button><br><br>
+	<button onclick="window.location.href='logout.php'" class="logout">Log out</button><br><br>
   <h1>Register an Event</h1>
   <div class="form-container">
     <form action="register_event.php" method="POST">
-		<input type="text" name="eventname" placeholder="Event Name" required="required"><br>
-        <b>Start Date</b>
-		<input type="date" name="startdate" placeholder="Start Date"  required="required"><br>
-        <input type="date" name="enddate"  placeholder="End Date" required="required"><br>
-        <select class="orgn" name="orgn" placeholder="Select Organization Type" required>
+  	<div class='first'>
+      <b>Event Details</b><br><br>
+	    <input type="text" name="eventname" placeholder="Event Name" required="required"><br>
+        <label>Start Date: </label><input type="date" name="startdate" placeholder="Start Date"  required="required"><br>
+        <label>End Date: </label><input type="date" name="enddate"  placeholder="End Date" required="required"><br>
+        <br>
+	<select class="orgn" name="orgn" placeholder="Select Organization Type" required>
                                         <option value="">Select Organization Type</option>
-                                        <option value="Non-Profit Organization">Non-Profit Organization</option>
+                                        <option value="Non-Profit">Non-Profit</option>
                                         <option value="Family">Family</option>
                                         <option value="Community">Community</option>
                                         <option value="Other">Other</option>
-		</select></b><br>
-
-        <b> Debit Details of the event:</b><br>
-            <input type="number" placeholder="Account Number*: 8-Digit" name="accno" required="required" min="10000000" max="99999999"><br>
-            <input type="text" placeholder="Account Name*" name="accname"  required="required"><br>
+		</select></b><br><br><br>
+	</div>
+	<div class='second'>
+        
+           <b>Debit Details</b><br>
+           <label>Account Number</label><input type="number" placeholder="8-Digit" name="accno" required="required" min="10000000" max="99999999"><br><br>
+            <input type="text" placeholder="Account Name*" name="accname"  required="required"><br><br>
+           <input type="text" placeholder=" Address" name="address"><br><br>
             <select class="bankname" placeholder="Bank Name*" name="bankname" required>
                                         <option value="">Select Bank Name</option>
                                         <option value="ABC">ABC</option>
                                         <option value="RBC">RBC</option>
                                         <option value="XYZ">XYZ</option>
                                         <option value="TDBC">TDBC</option>
-                                        </select><br>
-           <input type="text" placeholder=" Address" name="address"><br>
+                                        </select><br><br>        
+	<br><br>
+	<input class="button" type="submit" value="Register" name="register"/>
+	</div>
 
-        <input style="text-align:center" class="button" type="submit" value="Register" name="submit"/>
      </form>
   </div>
 </body>

@@ -21,6 +21,6 @@
     echo "Your username is: ".$_SESSION["username"]."<br>";
     echo "Your password is: ".$_SESSION["password"]."<br>";
 
-
+    include("user_details.php");
 
 ?>

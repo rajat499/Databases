@@ -8,6 +8,8 @@
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
     }
+	
+ echo "<link rel='stylesheet' type='text/css' href='css/edit_profile.css' />";
 
     $sql = "SELECT * from  users_info where userid='$user'";
     $result = $conn->query($sql);
@@ -17,23 +19,39 @@
         exit();
     }
 
-    echo "<a href='users.php'>Go Back to Homepage</a>&emsp;&emsp;";
-    echo "<a href='logout.php'>Logout</a><br><br>";
+    echo "<button onclick='window.location.href=".'"users.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+	echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
 
     $result = $result->fetch_assoc();
-    echo "<b>Edit Your Profile</b><br>";
+    echo "<h1>Edit Your Profile</h1>";
+    echo "<div class='form-container'>";
+echo "<div class='wrapper'>";
+echo"<table>";
     echo "<form action='edit_profile.php' method='POST'>";
-    echo "User ID: &emsp;<input type='text' name='newuserid' value='$user'><br>";
+    echo "<label>User ID:</label><input type='text' name='newuserid' value='$user'><br>";
     $name = $result["username"];
-    echo "Name: &emsp;<input type='text' name='name' value='$name'><br>";
+    echo "<label>Name:</label><input type='text' name='name' value='$name'><br>";
     $pwd = $result["pass"];
-    echo "Password: &emsp;<input type='text' name='pwd' value='$pwd'><br>";
+    echo "<label>Password</label><input type='text' name='pwd' value='$pwd'><br>";
     $email = $result["email"]; 
-    echo "Email-id: &emsp;$email<br>";
+    echo "Email-ID: $email<br><br><br>";
+    $organizations = array("Non-Profit", "Family", "Community", "Other");
     $orgn = $result["orgn"];
-    echo "Organization: &emsp; <input type='text' name='orgn' value='$orgn'><br>";
-    echo '<input type="submit" value="Edit" name="edit"><br>';
+    echo "<label>Organization: </label>";
+    echo "<select class='orgn' name='orgn'>";
+    echo "<option value='$orgn'>$orgn</option>";
+    foreach($organizations as $organization){
+        if($organization !== $orgn){
+            echo "<option value='$organization'>$organization</option>";
+        }
+    }
+    echo "</select></b><br><br><br>";
+        
+    echo '<input style="text-align:center; position: absolute; right: 6;" class="button" type="submit" value="Edit" name="edit"/>';
     echo "</form>";
+echo"</table>";
+echo"</div>";
+    echo "</div>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit'])){ 
         edit_profile($_SESSION["username"],$_POST["newuserid"], $_POST['name'], $_POST["pwd"], $_POST["orgn"]);
@@ -59,5 +77,12 @@
     }
 
 ?>
-
+<html>
+    <head>
+	<link rel="stylesheet" type="text/css" href="css/edit_profile.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Edit Your Profile</title>
+    </head>
+</html>
 

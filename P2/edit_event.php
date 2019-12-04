@@ -8,9 +8,14 @@
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
     }
+ echo "<link rel='stylesheet' type='text/css' href='css/edit_event.css' />";
 
-    echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
-    echo "<a href='users.php'>Go Back to Homepage</a> &emsp;&emsp;&emsp; <a href='logout.php'>Logout</a><br><br>";
+   // echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
+
+	echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
+	echo "<button onclick='window.location.href=".'"users.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+	echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
+
     $event = $_GET["event"];
     if($event==""){
         echo "Event Not Specified<br>";
@@ -31,16 +36,19 @@
         exit();
     }
 
-    echo "<b>Edit the Details</b><br>";
+    echo "<h1>Edit Event Details</h1>";
+echo "<div class='form-container'>";
     echo "<form action='' method='POST'>";
+echo"<div class='first'>";
+echo "<b>Event Details</b><br><br>";
     $eventname = $result['eventname'];
-    echo "Event Name:   &emsp; <input type='text' name='eventname' value='$eventname'><br>";
+    echo "Event Name: &emsp;<input type='text' name='eventname' value='$eventname'><br>";
     $startdate = $result["startdate"];
     echo "Start Date: &emsp;<input type='date' name='startdate' value='$startdate'><br>";
     $enddate = $result["enddate"];
     echo "Start Date: &emsp;<input type='date' name='enddate' value='$enddate'><br>";
-    $organizations = array("Non-Profit Organization", "Family", "Community", "Other");
-    echo "Organization Type: &emsp; <select name='orgn'>";
+    $organizations = array("Non-Profit", "Family", "Community", "Other");
+    echo "Organization Type: &emsp;<br><select class='orgn' placeholder='Select Organization Type' name='orgn'>";
     $orgn = $result["orgnType"];
     echo "<option value='$orgn'>$orgn</option>";
     foreach($organizations as $organization){
@@ -48,9 +56,11 @@
             echo "<option value='$organization'>$organization</option>";
         }
     }
-    echo "</select><br><br>";
+    echo "</select><br>";
+	echo'</div>';
 
-    echo "<b> Debit Details of the event:</b><br>";
+	echo"<div class='second'>";
+    echo "<b>Debit Details</b><br><br>";
     $accno = $result["debitaccno"];
     echo "Account Number: &emsp; <input type='number' value='$accno' name='accno' min='10000000' max='99999999'><br>";
     $bankname = $result["debitbankname"]; 
@@ -58,19 +68,26 @@
     $bankdetails = $bankdetails->fetch_assoc();
     $accname = $bankdetails["accname"];
     echo "Account Name: &emsp; <input type='text' value='$accname' name='accname'><br>";
+    $address = $bankdetails["address"];
+    echo "Address:&emsp; <input type='text' name='address' value='$address'><br>";
     $banks = array("ABC", "RBC", "XYZ", "TDBC");
-    echo "Bank Name: &emsp; <select name='bankname'>";
+    echo "Bank Name: &emsp;<br><select class='bankname' name='bankname'>";
     echo "<option value='$bankname'>$bankname</option>";
     foreach($banks as $bank){
         if($bank !== $bankname){
             echo "<option value='$bank'>$bank</option>";
         }
     }
-    echo "</select><br>";
-    $address = $bankdetails["address"];
-    echo "Address:&emsp; <input type='text' name='address' value='$address'><br>";
-    echo "<input type='submit' value='Edit Details' name='edit_details'>";
-    echo "</form>";
+    echo "</select><br><br><br>";
+    
+
+
+
+        echo"<input style='text-align:center; position: absolute; right: 6;' class='button' type='submit' value='Done' name='edit_details'/>";
+	echo "</div>";
+
+echo "</form>";
+echo "</div>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit_details'])){ 
         register_bank($_POST['accno'],$_POST['bankname'],$_POST['accname'],$_POST['address']);
@@ -118,3 +135,12 @@
     }
 
 ?>
+
+<html>
+    <head>
+	<link rel="stylesheet" type="text/css" href="css/edit_event.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Edit Event</title>
+    </head>
+</html>

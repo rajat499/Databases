@@ -28,9 +28,9 @@ COMP353- Group 11
 	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 
-<video autoplay muted loop id="myVideo">
+<!--<video autoplay muted loop id="myVideo">
   <source src="https://www.meetup.com/mu_static/en-US/video.dddafbfe.mp4" type="video/mp4">
-</video>
+</video>-->
 
 <div class="content">
   <input type="radio" checked id="loginToggle" name="toggle" class="toggle" />
@@ -54,8 +54,8 @@ COMP353- Group 11
     <label for="loginToggle" class="text smallText centeredText">Already a User? <b>Log in</b></label>
   </form>
   
-  <div class="credit">
+  <!--<div class="credit">
     <a class="text smallText" href="https://www.meetup.com/" target="_blank">Video by <b>Meetup.com</b></a>
-  </div>
+  </div>-->
 
 </html>

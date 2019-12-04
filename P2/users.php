@@ -19,7 +19,8 @@
     
     echo "<a href='edit_profile.php'>Edit Profile</a>&emsp;&emsp;";
     echo "<a href='register_event.php'>Register Event</a>&emsp;&emsp;";
-    echo "<a href='logout.php'>Logout</a><br><br>";
+    echo "<a href='logout.php'>Logout</a>&emsp;&emsp;";
+    echo "<a href='MessagingSystem.php'>Instant Messaging System</a><br><br>";
     
     $sql = "SELECT event from  participants where user='$user'";
     $result = $conn->query($sql);

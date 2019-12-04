@@ -32,9 +32,25 @@
     background-color: black;
   }
 
+  .goBack{
+  background-color: white;
+      border: none;
+      color: #a60014;
+      padding: 12px 16px;
+      cursor: pointer;
+      position: absolute;
+      top: 8px;
+      left: 80px;
+      font-size: 20px;
+  }
+
+.goBack:hover {
+    background-color: black;
+  }
+  
   body {
     background-image: url("https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials-hero-00e10b1f.jpg");
-    color: grey;
+    color: white
     font-family: serif;
     text-align: center;
     background-color: hsla(14, 100%, 53%, 0.6);
@@ -64,22 +80,9 @@
       white-space: nowrap;
   }
   
-  .form-container {
-    background-color: white;
-    font-family: serif;
-    font-size: 14px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    padding: 50px;
-    position:relative;
-    max-width: 90%;
-    margin: 3% auto;
-    display: table;
-  }
   
   input {
-    background: transparent;
+    background: white
     color:black;
     font-family: serif;
     font-size: 14px;
@@ -96,7 +99,6 @@
   }
   
   .button {
-
     background-color: #a60014;
     border: 0;
     padding: 15px 40px;
@@ -114,29 +116,42 @@ right: 6;
   background-color: black;
   }
 
-.orgn, .bankname{
-background-color:white;
+  .button2 {
+    background-color: white;
+    border: 0;
+    padding: 0;
+    color: #a60014;
+font-weight: bold;
+    text-transform: uppercase;
+    font-family: serif;
+    font-size: 14px;
+  }
+  
+  .button2:hover {
+  background-color: black;
+  }
+
+
+table {
+background-color: white;
+width:100%;
+color:solid black;
+table-layout:fixed;
 }
 
-.first {
-   float:left;
-padding:5px;
-box-sizing: border-box;
-  margin: 20px auto;
-width:auto;
+tr:hover {background-color: #f5f5f5;}
+td {
+word-wrap:break-word;
 
-    text-align: left;
-display: block;
-
+ border-bottom: 1px solid #ddd;
+ background-color: white
+  color: red
 }
-.second {
-    float:right;
-padding:5px;
-box-sizing: border-box;
-margin: 20px auto;
-width:auto;
+
+th {
 text-align: left;
-display: block;
+color: #a60014;
 
+ border-bottom: 1px solid #ddd;
 }
 
