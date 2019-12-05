@@ -4,31 +4,43 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
-
-	echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
-	echo "<button onclick='window.location.href=".'"users.php"'."' class='btn'><i class='fa fa-home'></i></button>";
-    echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
     
     if($_SERVER['REQUEST_METHOD'] == "POST" && (isset($_POST['delete_post']))){
         $type = $_POST["type"];
         $postid = $_POST["delete_post"];
         $q = "";
+        $img = "";
         if($type=="event"){
+            $img = "SELECT img from event_posts where postid=$postid";
             $q = "DELETE FROM event_posts where postid=$postid";
         }
         else if($type=="user"){
+            $img = "SELECT img from user_posts where postid=$postid";
             $q = "DELETE FROM user_posts where postid=$postid";
         }
-        else if($type=="group"){    
+        else if($type=="group"){
+            $img = "SELECT img from group_posts where postid=$postid";    
             $q = "DELETE FROM group_posts where postid=$postid";
         }
         else{
             echo "Couldn't Delete Post. Unrecognized Post Type.";
             exit();
+        }
+        // Delete Image from Server
+        $img = $conn->query($img);
+        if(!$img){
+            echo $conn->error." Couldn't Find Image.<br>";
+            exit();
+        }
+        $img = $img->fetch_assoc();
+        $img = $img["img"];
+        if($img!==""){
+            if(!unlink($img))
+                echo "Couldn't delete image".$img;
         }
 
         $q = $conn->query($q);
@@ -109,6 +121,10 @@
             exit();
         }
     }
+
+    echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
+	echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+    echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
 
     if($_SERVER['REQUEST_METHOD'] == "POST" && (isset($_POST['view_post']))){
         $postid = $_POST["view_post"];

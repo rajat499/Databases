@@ -4,8 +4,8 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
     if($_SERVER['REQUEST_METHOD'] == "POST" && (isset($_POST['upload_post']))){

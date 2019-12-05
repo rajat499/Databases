@@ -4,8 +4,8 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
 	
@@ -19,7 +19,7 @@
         exit();
     }
 
-    echo "<button onclick='window.location.href=".'"users.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+    echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
 	echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
 
     $result = $result->fetch_assoc();

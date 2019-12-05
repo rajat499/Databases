@@ -20,7 +20,7 @@
     <title>Messages</title>
 </head>
 <!-- Logout and go to home page buttons -->
-<button onclick="window.location.href='users.php'" class="btn"><i class="fa fa-home"></i></button> </b>
+<button onclick="window.location.href='authenticate.php'" class="btn"><i class="fa fa-home"></i></button> </b>
 <button onclick="window.location.href='logout.php'" class="logout">Log out</button><br><br>
 
 

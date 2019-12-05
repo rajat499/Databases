@@ -4,8 +4,8 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
 
@@ -16,10 +16,22 @@
         echo "You don't have permissions to visit this page.<br>";
         exit();
     }
-    
+
     echo "Welcome to SCC System. You are a System Administrator."."<br>";
     echo "Your username is: ".$_SESSION["username"]."<br>";
-
-    include("user_details.php");
-
+    
+    echo "<a href='sysadmn.php?show=user_details'>User Details</a><br>";
+    echo "<a href='sysadmn.php?show=system_emails'>System Emails</a><br>";
+    echo "<a href='sysadmn.php?show=event_details'>Events Details</a><br>";
+    
+    $show = $_GET["show"];
+    if($show=="user_details"){
+        include("user_details.php");
+    }
+    if($show=="system_emails"){
+        include("system_emails.php");
+    }
+    if($show=="event_details"){
+        include("event_details.php");
+    }
 ?>

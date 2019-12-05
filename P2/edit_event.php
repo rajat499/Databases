@@ -4,8 +4,8 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
  echo "<link rel='stylesheet' type='text/css' href='css/edit_event.css' />";
@@ -13,7 +13,7 @@
    // echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
 
 	echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
-	echo "<button onclick='window.location.href=".'"users.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+	echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
 	echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
 
     $event = $_GET["event"];
@@ -30,17 +30,17 @@
     }
 
     $result = $sql->fetch_assoc();
-    if($result["eventmanager"] !== $user){
+    if($result["eventmanager"] !== $user && $user!=="sysadmn"){
         echo "You are not a manager of this event.<br>";
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
     }
 
     echo "<h1>Edit Event Details</h1>";
-echo "<div class='form-container'>";
-    echo "<form action='' method='POST'>";
-echo"<div class='first'>";
-echo "<b>Event Details</b><br><br>";
+    echo "<div class='form-container'>";
+        echo "<form action='' method='POST'>";
+    echo"<div class='first'>";
+    echo "<b>Event Details</b><br><br>";
     $eventname = $result['eventname'];
     echo "Event Name: &emsp;<input type='text' name='eventname' value='$eventname'><br>";
     $startdate = $result["startdate"];

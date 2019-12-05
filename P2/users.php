@@ -4,23 +4,24 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
 
 
     echo "Welcome to SCC System. You are a User."."<br>";
-    echo "Your username is: ".$_SESSION['username']."<br>";
     
     
    		
-   		echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
-		echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
-		echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
-		echo "<button onclick='window.location.href=".'"MessagingSystem.php"'."'class='msg'>Messages</button>";
-		echo "<button onclick='window.location.href=".'"edit_profile.php"'."'class='pro'>Edit Profile</button>";
-		echo "<button onclick='window.location.href=".'"register_event.php"'."'class='reg'>Register Event</button><br><br>";
+    echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
+    echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+    echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
+    echo "<button onclick='window.location.href=".'"MessagingSystem.php"'."'class='msg'>Messages</button>";
+    echo "<button onclick='window.location.href=".'"timeline.php"'."'>Timeline</button>";
+    echo "<button onclick='window.location.href=".'"edit_profile.php"'."'class='pro'>Edit Profile</button>";
+    echo "<button onclick='window.location.href=".'"register_event.php"'."'class='reg'>Register Event</button><br><br>";
+    
     $sql = "SELECT event from  participants where user='$user'";
     $result = $conn->query($sql);
     

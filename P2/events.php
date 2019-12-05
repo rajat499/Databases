@@ -4,13 +4,13 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
 
 	echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
-	echo "<button onclick='window.location.href=".'"users.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+	echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
 	echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
     
     $event = $_GET["event"];
@@ -54,7 +54,8 @@
                     $row=$row["user"];
                     $user = $conn->query("SELECT * from users_info WHERE userid='$row'");
                     $user = $user->fetch_assoc();
-                        echo "<td>".$user['username']."(".$user['userid'].")</td>";
+                    $userid = $user["userid"];
+                        echo "<td><a href='timeline.php?watch=$userid'>".$user['username']."($userid)</a></td>";
                         echo "<td>".$user['email']."</td>";
                 echo "</tr>";
             }

@@ -4,8 +4,8 @@
     include("connection.php");
     $user = $_SESSION['username'];
     if($user==""){
-        echo "Please Login to the system first<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
+        echo "<h1>Please Login to the system first</h1><br>";
+        include("login.php");
         exit();
     }
     //echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
@@ -29,7 +29,7 @@
     }
 
     $result = $sql->fetch_assoc();
-    if($result["eventmanager"] !== $user){
+    if($result["eventmanager"] !== $user && $user!=="sysadmn"){
         echo "You are not a manager of this event.<br>";
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
@@ -73,7 +73,7 @@ echo"<div class='form-container'>";
 
   echo"<div>";
     echo "<h1>Members in the Event</h1>";
-    $col = array("userid", "username", "email"); 
+    $col = array( "username", "email"); 
     $sql = $conn->query("SELECT user from participants where event='$event'");
     if(!$sql){
         echo "Error getting details of Participants. ".$conn->error."<br>";
@@ -89,6 +89,8 @@ echo"<div class='form-container'>";
                 $row=$row["user"];
                 $user = $conn->query("SELECT * from users_info WHERE userid='$row'");
                 $user = $user->fetch_assoc();
+                $userid = $user["userid"];
+                echo "<td><a href='timeline.php?watch=$userid'>$userid</a></td>";
                 foreach($col as $att)
                     echo "<td>".$user[$att]."</td>";
                 echo "<td><form action='' method='POST'><br>
