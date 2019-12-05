@@ -46,7 +46,9 @@ echo "<b>Event Details</b><br><br>";
     $startdate = $result["startdate"];
     echo "Start Date: &emsp;<input type='date' name='startdate' value='$startdate'><br>";
     $enddate = $result["enddate"];
-    echo "Start Date: &emsp;<input type='date' name='enddate' value='$enddate'><br>";
+    echo "End Date: &emsp;<input type='date' name='enddate' value='$enddate'><br>";
+    $description = $result["description"];
+    echo "Description of the Event:<br><textarea name='description' rows='4'>$description</textarea><br><br>";
     $organizations = array("Non-Profit", "Family", "Community", "Other");
     echo "Organization Type: &emsp;<br><select class='orgn' placeholder='Select Organization Type' name='orgn'>";
     $orgn = $result["orgnType"];
@@ -67,10 +69,10 @@ echo "<b>Event Details</b><br><br>";
     $bankdetails = $conn->query("SELECT * from acc_details where accno=$accno and bankname='$bankname'");
     $bankdetails = $bankdetails->fetch_assoc();
     $accname = $bankdetails["accname"];
-    echo "Account Name: &emsp; <input type='text' value='$accname' name='accname'><br>";
+    echo "Account Name: &emsp; <input type='text' value='$accname' name='accname'><br><br>";
     $address = $bankdetails["address"];
     echo "Address:&emsp; <input type='text' name='address' value='$address'><br>";
-    $banks = array("ABC", "RBC", "XYZ", "TDBC");
+    $banks = array("Royal Bank", "Federal Bank", "National Bank", "State Bank");
     echo "Bank Name: &emsp;<br><select class='bankname' name='bankname'>";
     echo "<option value='$bankname'>$bankname</option>";
     foreach($banks as $bank){
@@ -83,7 +85,7 @@ echo "<b>Event Details</b><br><br>";
 
 
 
-        echo"<input style='text-align:center; position: absolute; right: 6;' class='button' type='submit' value='Done' name='edit_details'/>";
+        echo"<input style='text-align:center; position: absolute; right: 4;' class='button' type='submit' value='Edit Details' name='edit_details'/>";
 	echo "</div>";
 
 echo "</form>";

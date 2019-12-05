@@ -26,14 +26,41 @@
         exit();
     }
     $eventdetails = $eventdetails->fetch_assoc();
-    $participant = $conn->query("SELECT * from participants where event=$event AND user='$user'");
 
-    if($participant->num_rows==0 && $user!==$eventdetails["eventmanager"] && $user!=="sysadmn"){
-        echo "You have no rights to access this page. You are not a part of this event. Please register first.<br>";
+    if($user!==$eventdetails["eventmanager"] && $user!=="sysadmn"){
+        echo "You have no rights to access this page.<br>";
         exit();
     }
 
-    $file_name = "raw.csv";
+    $file_name = "";
+    
+    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_FILES['input_file'])){
+        if(isset($_FILES['input_file'])){
+            $file_name = $_FILES['input_file']['name'];
+            $file_size = $_FILES['input_file']['size'];
+            $file_tmp =$_FILES['input_file']['tmp_name'];
+            $file_ext = strtolower(end(explode('.',$file_name)));
+            
+            if($file_ext !== "csv"){
+                echo "ONLY CSV FILES ALLLOWED <br>";
+                exit();
+            }
+
+            move_uploaded_file($file_tmp,"uploads/".$file_name);
+        }
+        else{
+            echo "FILE NOT SPECIFIED.<br>";
+            exit();
+        }
+    }
+    
+    if($file_name==""){
+        echo "FILE NAME NOT SPECIFIED.<br>";
+        exit();
+    }
+
+    $file_name = "uploads/".$file_name;
+
     if(($f = fopen($file_name, "r")) !==FALSE){
         echo "Members Added<br>";
         echo "<table>";
@@ -58,7 +85,9 @@
                         $user = $sql["userid"];
                         $join_event = $conn->query("INSERT INTO participants VALUES('$user','$event')");
                         if(!$join_event){
-                            echo $conn->error."<br>";
+                            echo "<td>$conn->error</td>";
+                            echo "</tr>";
+                            continue;
                         }
                         echo "<td>OLD</td>";
                     }
@@ -68,16 +97,22 @@
                                 userid-$email and password-123. Please login using the same and change your credentials";
                         $sysemail = $conn->query("INSERT INTO system_emails(user,email,txt) VALUES('$email','$email','$text')");
                         if(!$sysemail){
-                            echo $conn->error."<br>";
+                            echo "<td>$conn->error</td>";
+                            echo "</tr>";
+                            continue;
                         }
                         $join_event = $conn->query("INSERT INTO participants VALUES('$email','$event')");
                         if(!$join_event){
-                            echo $conn->error."<br>";
+                            echo "<td>$conn->error</td>";
+                            echo "</tr>";
+                            continue;
                         }
                         echo "<td>NEW</td>";
                     }
                 }else{
-                    echo "Error: ".$conn->error."<br>";
+                    echo "<td>$conn->error</td>";
+                    echo "</tr>";
+                    continue;
                 }
             }
             echo "</tr>";

@@ -43,6 +43,46 @@
       left: 80px;
       font-size: 20px;
   }
+.msg{
+ font-weight:bold;
+    background-color: white;
+    font-family: Georgia;
+    border: none;
+    color: #a60014;
+    padding: 11px 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    left: 150px;
+    font-size: 13px;
+  }
+.pro{
+ font-weight:bold;
+    background-color: white;
+    font-family: Georgia;
+    border: none;
+    color: #a60014;
+    padding: 11px 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    left: 220px;
+    font-size: 13px;
+  }
+.reg{
+ font-weight:bold;
+    background-color: white;
+    font-family: Georgia;
+    border: none;
+    color: #a60014;
+    padding: 11px 15px;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    left: 350px;
+    font-size: 13px;
+  }
+  }
 
 .goBack:hover {
     background-color: black;
@@ -154,4 +194,9 @@ color: #a60014;
 
  border-bottom: 1px solid #ddd;
 }
-
+a{
+color:#a60014;
+font-size:14px;
+font-family: serif;
+text-align:left;
+}

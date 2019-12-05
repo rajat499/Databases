@@ -7,32 +7,31 @@
         echo "Please Login to the system first<br>";
         echo "<a href='./login.php'>Go to Login</a><br>";
         exit();
-    }else if($user=="sysadmn" || $user=="controller"){
-        echo "You are not a user.<br>";
-        echo "<a href='./login.php'>Go to Login</a><br>";
-        exit();
     }
 
 
     echo "Welcome to SCC System. You are a User."."<br>";
     echo "Your username is: ".$_SESSION['username']."<br>";
     
-    echo "<a href='edit_profile.php'>Edit Profile</a>&emsp;&emsp;";
-    echo "<a href='register_event.php'>Register Event</a>&emsp;&emsp;";
-    echo "<a href='MessagingSystem.php'>Instant Messaging System</a>&emsp;&emsp;";
-    echo "<a href='logout.php'>Logout</a><br><br>";
     
+   		
+   		echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
+		echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+		echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
+		echo "<button onclick='window.location.href=".'"MessagingSystem.php"'."'class='msg'>Messages</button>";
+		echo "<button onclick='window.location.href=".'"edit_profile.php"'."'class='pro'>Edit Profile</button>";
+		echo "<button onclick='window.location.href=".'"register_event.php"'."'class='reg'>Register Event</button><br><br>";
     $sql = "SELECT event from  participants where user='$user'";
     $result = $conn->query($sql);
     
     if(!$result){
         echo "Error getting details of events registered in. ".$conn->error."<br>";
     }
-    $col = array("eventid", "startdate", "enddate"); 
-    echo "<b> Events you are registered for.</b><br>";
+    $col = array( "startdate", "enddate"); 
+    echo "<h1> Events you are registered for.</h1><br>";
     if($result->num_rows>0){
         echo "<table>";
-        echo "<tr> <th>Event Name</th> <th>Event ID</th> <th>Start Date</th> <th>End Date</th> <th>Event Manager</th> <th>Withdraw</th></tr>";
+        echo "<tr> <th>Event Name</th> <th>Start Date</th> <th>End Date</th> <th>Event Manager</th> <th>Withdraw</th></tr>";
         while($row = $result->fetch_assoc()){
             echo "<tr>";
             $eventDet = $row["event"];
@@ -43,7 +42,7 @@
                 echo "<td>".$eventDet[$att]."</td>";
             $eventManager = $eventDet["eventmanager"];
             $eventManager = $conn->query("SELECT username from users_info where userid='$eventManager'");
-            echo "<td>".$eventManager->fetch_assoc()["username"]."</td>";
+            echo "<td>".$eventManager->fetch_assoc()["username"]."(".$eventDet["eventmanager"].")</td>";
             $event = $row["event"];
             echo "<td><a href='users.php?withdraw_event=true&event=$event'>Withdraw</a></td>";
             echo "</tr>";
@@ -75,18 +74,18 @@
     if(!$result){
         echo "Error getting details of events not registered in. ".$conn->error."<br>";
     }
-    $col = array("eventid", "eventname", "startdate", "enddate"); 
-    echo "<b> Click on any link to register for the event.</b><br>";
+    $col = array( "eventname", "startdate", "enddate"); 
+    echo "<b><br><br> Click on any link to register for the event.</b><br>";
     if($result->num_rows>0){
         echo "<table>";
-        echo "<tr> <th>Event ID</th> <th>Event Name</th> <th>Start Date</th> <th>End Date</th> <th>Event Manager</th> <th>Register</th></tr>";
+        echo "<tr><th>Event Name</th> <th>Start Date</th> <th>End Date</th> <th>Event Manager</th> <th>Register</th></tr>";
         while($row = $result->fetch_assoc()){
             echo "<tr>";
             foreach($col as $att)
                 echo "<td>".$row[$att]."</td>";
             $eventManager = $row["eventmanager"];
             $eventManager = $conn->query("SELECT username from users_info where userid='$eventManager'");
-            echo "<td>".$eventManager->fetch_assoc()["username"]."</td>";
+            echo "<td>".$eventManager->fetch_assoc()["username"]."(".$row["eventmanager"].")</td>";
             $check = $row["eventid"];
             $check = $conn->query("SELECT * from event_join_req where user='$user' AND event='$check'");
             if($check->num_rows>0){
@@ -109,11 +108,11 @@
     if(!$result){
         echo "Error getting details of Managerial Roles. ".$conn->error."<br>";
     }
-    $col = array("eventid", "startdate", "enddate", "orgnType", "debitaccno", "debitbankname"); 
-    echo "<b><br> You are manager of the following events. Click on Event ID to manage the event</b><br>";
+    $col = array( "startdate", "enddate", "orgnType", "debitaccno", "debitbankname"); 
+    echo "<b><br> <br>You are manager of the following events. Click on Event ID to manage the event</b><br>";
     if($result->num_rows>0){
         echo "<table>";
-        echo "<tr> <th>Event Name</th> <th>Event ID</th> <th>Start Date</th> <th>End Date</th> <th>Organization</th> <th>Debit Acc No</th> <th>Debit Bank</th></tr>";
+        echo "<tr> <th>Event Name</th> <th>Start Date</th> <th>End Date</th> <th>Organization</th> <th>Debit Acc No</th> <th>Debit Bank</th></tr>";
         while($row = $result->fetch_assoc()){
             echo "<tr>";
             $event = $row["eventid"];

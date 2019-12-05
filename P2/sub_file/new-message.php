@@ -48,9 +48,9 @@
 			
 			<textarea class="message-input" name="message" placeholder="Write your message"></textarea><br><br>
 			
-			<input type="submit" value="Send" id="send" name="send"/>
+			<button type="submit" value="Send" id="send" name="send">Send</button>
 			
-			<button onclick="document.getElementById('new-message').style.display='none'">Cancel</button>
+			<button id="send" onclick="document.getElementById('new-message').style.display='none'">Cancel</button>
 		</form>
 	</p>
 	<p class="message-footer"></p>

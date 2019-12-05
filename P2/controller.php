@@ -11,10 +11,10 @@
 //	echo "<a href='' onclick='window.history.go(-1); return false;'>Go to Previous page</a>&emsp;&emsp;";
    	//echo "<a href='authenticate.php'>Go Back to Homepage</a> &emsp;&emsp;&emsp; <a href='logout.php'>Logout</a><br><br>";
 	echo "<button onclick='window.history.go(-1); return false;' class='goBack'><i class='fa fa-arrow-left'></i></button>";
-	echo "<button onclick='window.location.href=".'"controller.php"'."' class='btn'><i class='fa fa-home'></i></button>";
+	echo "<button onclick='window.location.href=".'"authenticate.php"'."' class='btn'><i class='fa fa-home'></i></button>";
 	echo "<button onclick='window.location.href=".'"logout.php"'."' class='logout'>Log out</button><br><br>";
  
-   if($user !== "controller"){
+   if($user !== "controller" && $user!=="sysadmn"){
         echo "You don't have permissions to visit this page.<br>";
         exit();
 	}

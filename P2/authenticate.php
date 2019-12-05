@@ -32,11 +32,11 @@ if($count==1){
         // echo "Password: ".$_SESSION['password']."<br>";
         
         if(($row["username"] == "System Administrator") && ($row["userid"] == "sysadmn")){
-            header("location:sysadmn.php");
+            header("location:access_role.php");
             exit();
         }
         else if(($row["username"] == "Controller") && ($row["userid"] == "controller")){
-            header("location:controller.php");
+            header("location:access_role.php");
             exit();
         }
         else{

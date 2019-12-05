@@ -17,7 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="css/register_event.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Register an Event</title>
+    <title>Messages</title>
 </head>
 <!-- Logout and go to home page buttons -->
 <button onclick="window.location.href='users.php'" class="btn"><i class="fa fa-home"></i></button> </b>

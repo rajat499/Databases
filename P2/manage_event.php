@@ -58,9 +58,22 @@ echo"<div class='form-container'>";
     echo "<a href='events.php?event=$event'>Go to Events Page</a><br>";
   echo"</div><br>";
 
+    
+  
+    echo"<div>";
+        echo "<h1>Add Members</h1>";
+        echo "<form action='add_users.php?event=$event' method='POST' enctype='multipart/form-data'>
+            Select file to upload:
+            <input type='file' name='input_file' required>
+            <button type='submit' name='file_upload'>Upload File</button>
+            </form>";
+    echo "</div><br>";
+
+
+
   echo"<div>";
     echo "<h1>Members in the Event</h1>";
-    $col = array("username", "email"); 
+    $col = array("userid", "username", "email"); 
     $sql = $conn->query("SELECT user from participants where event='$event'");
     if(!$sql){
         echo "Error getting details of Participants. ".$conn->error."<br>";
@@ -69,7 +82,7 @@ echo"<div class='form-container'>";
 
     if($sql->num_rows>0){
         echo "<table>";
-        echo "<tr> <th>Username</th> <th>Email</th> <th>Remove</th> </tr>";
+        echo "<tr><th>UserID</th> <th>Username</th> <th>Email</th> <th>Remove</th> </tr>";
 
         while($row = $sql->fetch_assoc()){
             echo "<tr>";
