@@ -1,6 +1,6 @@
 <?php
 
-	$conn = new mysqli("krc353.encs.concordia.ca", "krc353_2", "qNbKfe");
+	$conn = new mysqli("localhost", "root", "");
 
 	if ($conn->connect_error) {
 	    die("Connection to the MySQL server failed: " . $conn->connect_error);
