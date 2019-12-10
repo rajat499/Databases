@@ -92,9 +92,9 @@
                         echo "<td>OLD</td>";
                     }
                     else{
-                        $new_participant = $conn->query("INSERT INTO users_info(userid,username,pass,email) VALUES('$email','$username', 123, '$email')");
+                        $new_participant = $conn->query("INSERT INTO users_info(userid,username,pass,email) VALUES('$email','$username', 12345, '$email')");
                         $text = "Hi $username!, Welcome to SCC System. You have been registered as a new user. Your login credentials are as follows: 
-                                userid-$email and password-123. Please login using the same and change your credentials";
+                                userid-$email and password-12345. Please login using the same and change your credentials";
                         $sysemail = $conn->query("INSERT INTO system_emails(user,email,txt) VALUES('$email','$email','$text')");
                         if(!$sysemail){
                             echo "<td>$conn->error</td>";
