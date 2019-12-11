@@ -1,6 +1,10 @@
 <?php
 	session_start();
 	include("connection.php");
+?>
+<!-- Worked on by
+40012133	Florin POENARIU f_poenar@encs.concordia.ca -->
+<?php
 	
 	if(isset($_POST['send'])) {
 		$sender = $_SESSION['username'];

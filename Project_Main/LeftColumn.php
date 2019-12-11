@@ -1,3 +1,7 @@
+
+<!-- Worked on by
+40012133	Florin POENARIU f_poenar@encs.concordia.ca -->
+
 <!--- Create the New Message button -->
 	<div style="cursor:pointer" onclick="document.getElementById('new-message').style.display='block'" class="white-back">
 		<p id="new_message_button" align="center" ><br> New Message </p>

@@ -10,6 +10,13 @@
     }
 ?>
 
+<!-- Worked on by
+40150463	Rajat Jaiswal r_jais@encs.concordia.ca
+
+Integration of CSS by
+27771223	Soumayyah AHMED	so_ahmed@encs.concordia.ca
+40036565	Sadia Anowara Smitha s_smitha@encs.concordia.ca -->
+
 <html>
     <head>
 	<link rel="stylesheet" type="text/css" href="css/manage_event.css">

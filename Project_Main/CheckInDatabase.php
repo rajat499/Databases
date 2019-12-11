@@ -1,4 +1,8 @@
-<!-- This checks inside inside of the database for users -->
+<!-- 
+	Worked on by
+	40012133	Florin POENARIU f_poenar@encs.concordia.ca
+	
+	This checks inside inside of the database for users -->
 <?php
 
 	// connection.php is always required

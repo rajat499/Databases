@@ -1,5 +1,11 @@
 <?php
 	session_start();
+?>
+
+<!-- Worked on by
+40150463	Rajat Jaiswal r_jais@encs.concordia.ca-->
+
+<?php 
     
     include("connection.php");
     

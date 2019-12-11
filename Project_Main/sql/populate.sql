@@ -1,20 +1,19 @@
-INSERT INTO users_info(userid,username,pass,email,orgn)
-VALUES 
-('sysadmn', 'System Administrator', 'admin', 'admn@gmaail.com', 'No Organization'),
-('controller', 'Controller', 'control', 'control@gmail.com', 'No Organization');
 
+/* Worked on by
+40024628	Avnish PATEL av_pate@encs.concordia.ca
+*/
 INSERT INTO users_info(userid,username,pass,email,orgn)
 VALUES 
-('Userid1', 'Username1', 'Password1', 'user1@gmail.com' , 'Organization1'),
-('Userid2', 'Username2', 'Password2', 'user2@gmail.com' , 'Organization2'),
-('Userid3', 'Username3', 'Password3', 'user3@gmail.com' , 'Organization3'),
-('Userid4', 'Username4', 'Password4', 'user4@gmail.com' , 'Organization4'),
-('Userid5', 'Username5', 'Password5', 'user5@gmail.com' , 'Organization5'),
-('Userid6', 'Username6', 'Password6', 'user6@gmail.com' , 'Organization6'),
-('Userid7', 'Username7', 'Password7', 'user7@gmail.com' , 'Organization7'),
-('Userid8', 'Username8', 'Password8', 'user8@gmail.com' , 'Organization8'),
-('Userid9', 'Username9', 'Password9', 'user9@gmail.com' , 'Organization9'),
-('Userid10', 'Username10', 'Password10', 'user10@gmail.com' , 'Organization10');
+('Userid1', 'Username1', 'Password1', 'user1@gmail.com' ),
+('Userid2', 'Username2', 'Password2', 'user2@gmail.com' ),
+('Userid3', 'Username3', 'Password3', 'user3@gmail.com' ),
+('Userid4', 'Username4', 'Password4', 'user4@gmail.com'),
+('Userid5', 'Username5', 'Password5', 'user5@gmail.com' ),
+('Userid6', 'Username6', 'Password6', 'user6@gmail.com' ),
+('Userid7', 'Username7', 'Password7', 'user7@gmail.com'),
+('Userid8', 'Username8', 'Password8', 'user8@gmail.com'),
+('Userid9', 'Username9', 'Password9', 'user9@gmail.com' ),
+('Userid10', 'Username10', 'Password10', 'user10@gmail.com');
 
 
 INSERT INTO acc_details (accno,bankname,accname,address)
@@ -49,11 +48,7 @@ VALUES
 ('eventname9',1,'2020-01-09','2020-01-19','Organization9',2,'Userid8'),
 ('eventname10',1,'2020-01-10','2020-01-20','Organization9',6,'Userid8');
 
--- Not userid hosting-9,10
--- Organization not hosting-10
 
-
--- This one is long too many participants for all the events.
 
 
 INSERT INTO participants

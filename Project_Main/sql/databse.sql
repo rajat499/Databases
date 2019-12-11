@@ -1,3 +1,7 @@
+/* Worked on by
+40150463	Rajat Jaiswal r_jais@encs.concordia.ca
+*/
+
 CREATE DATABASE IF NOT EXISTS krc353_2;
 use krc353_2;
 

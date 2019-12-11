@@ -1,6 +1,11 @@
 <?php
-
 	session_start();
+?>
+
+<!-- Worked on by
+40012133	Florin POENARIU f_poenar@encs.concordia.ca -->
+
+<?php
 	include("connection.php");
 	if(isset($_SESSION['username']) and isset($_GET['user'])) {
 

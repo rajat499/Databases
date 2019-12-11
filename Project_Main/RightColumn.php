@@ -1,3 +1,5 @@
+<!-- Worked on by
+40012133	Florin POENARIU f_poenar@encs.concordia.ca -->
 
 <div id="right-col-container">
 
